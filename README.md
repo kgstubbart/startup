@@ -36,9 +36,10 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login over HTTPS
+- Ability to favorite a most-loved book
+- Stores and totals favorites
+- Displays basic title information
 
 ### Technologies
 
