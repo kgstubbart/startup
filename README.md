@@ -50,7 +50,7 @@ I am going to use the required technologies in the following ways.
     - submitting favorite
     - retrieving favorites status
 - **DB/Login** - Store users and favorites in database. Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
-- **WebSocket** - As each user adds a favorite, their favorite is broadcast to all other users.
+- **WebSocket** - When a new book becomes the number one favorited, that book is broadcast to all users.
 
 ## 🚀 AWS deliverable
 
