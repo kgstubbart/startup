@@ -19,7 +19,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Done with reading books that are just okay? Through Library Ace, you can find the best of the best! Each user gets one book to favorite, and that's it! Choose your favorite book that you think everyone needs to read and you will be helping others find only the best books. See what books are the most beloved in the community, and find something that is worth your time to read.
+Done with reading books that are just okay? Done with searching through ratings and videos to find a book worth your time? Through Library Ace, you can find the best of the best! Each user gets one book to favorite, and that's it! Choose your favorite book that you think everyone needs to read and you will be helping others find only the best books. See what books are the most beloved in the community, and find something that is worth your time to read.
 
 ### Design
 
@@ -45,12 +45,15 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses correct HTML structure for application. Three HTML pages. One for login, one for books, one for rankings. Hyperlinks to choice artifact.
+- **CSS** - Application styling that looks appropriate on different screen sizes, uses good whitespace, color choice and contrast.
+- **React** - Provides login, applying favorite, display other users favorites, and use of React for routing and components.
+- **Service** - Backend service with endpoints for:
+    - login
+    - submitting favorite
+    - retrieving favorites status
+- **DB/Login** - Store users and favorites in database. Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
+- **WebSocket** - As each user adds a favorite, their favorite is broadcast to all other users.
 
 ## 🚀 AWS deliverable
 
