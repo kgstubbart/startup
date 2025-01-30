@@ -40,6 +40,7 @@ I am going to use the required technologies in the following ways.
     - login
     - submitting favorite
     - retrieving favorites status
+- **API** - Going to use Goodreads API to get book information, such as titles, author, and summary.
 - **DB/Login** - Store users and favorites in database. Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
 - **WebSocket** - When a new book becomes the number one favorited, that book is broadcast to all users.
 
@@ -47,21 +48,21 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://libraryace.click).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Created a home page, a book page, and a ranking page.
+- [x] **Proper HTML element usage** - Used headers, menu, table, and more elements throughout the HTML.
+- [x] **Links** - Links to each available page, project GitHub, and an image link all properly utilized.
+- [x] **Text** - Text is all filled in, with some generic text being used to represent a summary or title.
+- [x] **3rd party API placeholder** - Book information was left intentionally blank, as API will fill this information in.
+- [x] **Images** - Image of a book properly displayed and given alt text on My Book page.
+- [x] **Login placeholder** - Both username and password taken. Once logged in, taken to My Book HTML page.
+- [x] **DB data placeholder** - Top favorited books are shown in a table in the rankings page.
+- [x] **WebSocket placeholder** - Recently favorited books and who favorited them are shown on the rankings page.
 
 ## 🚀 CSS deliverable
 
