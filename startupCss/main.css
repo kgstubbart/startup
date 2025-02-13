@@ -29,12 +29,11 @@ menu {
 }
 
 .navbar-brand {
-  padding-left: 0.3em;
-  border-bottom: solid rgb(182, 182, 182) thin;
+  padding-left: 0.4em;
 }
 
 menu .nav-item {
-  padding: 0 0.3em;
+  padding: 0 0.5em;
 }
 
 footer a {
