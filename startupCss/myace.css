@@ -1,3 +1,18 @@
 .search-form {
     padding-right: 0.4em;
   }
+
+.btn-gold {
+    font-family: 'Cinzel', serif !important;
+    letter-spacing: 0.1px;
+    text-transform: uppercase;
+    background-color: #daa520 !important;
+    font-weight: bold !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+.btn-gold:hover {
+    background-color: #C89720 !important;
+}
