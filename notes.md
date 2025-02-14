@@ -8,9 +8,9 @@
 - [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org)
 
-## AWS Notes
+## CSS Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Bootstrap is very useful if you are going for a singular design, it gets a bit harder to use if you want more freedom. For example, I wanted the My Ace button to match the color scheme to the website, meaning I had to custom design that button yet match it to the bootstrap buttons I had used. Poeple notice slight changes, so I made sure to even get the hover color similar in shade difference. Some CSS items are very easy to carry over between pages, and add much better visual appeal to the site.
 
 ## HTML Notes
 
