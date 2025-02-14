@@ -14,3 +14,13 @@ td {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.top-aces-table {
+    max-width: 80%;
+    table-layout: fixed;
+}
+
+.recent-aces-table {
+    max-width: 35%;
+    table-layout: fixed;
+}
