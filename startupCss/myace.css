@@ -16,3 +16,7 @@
 .btn-gold:hover {
     background-color: #C89720 !important;
 }
+
+main {
+    padding-top: 40px;
+}
