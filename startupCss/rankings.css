@@ -1,0 +1,16 @@
+caption {
+    caption-side: top;
+    text-align: center !important;
+    color: #212529 !important;
+}
+
+tr {
+    background-color: #212529 !important;
+}
+
+td {
+    max-width: 40vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
