@@ -14,16 +14,3 @@ td {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-
-h3 {
-    text-align: left;
-    width: 100%;
-}
-
-/* Style the notifications list to be aligned left */
-.notifications {
-    margin-top: 0;      /* Remove extra top margin */
-    padding-left: 20px;
-    width: 100%;
-    text-align: left; /* Aligns the text in the list items to the left */
-}
