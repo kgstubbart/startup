@@ -68,12 +68,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - All HTML content is formatted and present.
+- [x] **Navigation elements** - Navigation bar sends user to all pages, and shows active page.
+- [x] **Responsive to window resizing** - Window can be resized to show all content, no content is hidden by navigation bar when resizing.
+- [x] **Application elements** - Created consistent coloring and branding, charts and buttons.
+- [x] **Application text content** - Text is thoughtfully designed and formatted with CSS and colored.
+- [x] **Application images** - Created a custom button that matches Bootstrap buttons but with Library Ace brand colors.
 
 ## 🚀 React part 1: Routing deliverable
 
