@@ -2,32 +2,50 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { MyAce } from './myace/myace';
+import { Rankings } from './rankings/rankings';
+
 export default function App() {
-  return <div className="body bg-dark text-light">
-  <header className="container-fluid">
-    <nav className="navbar fixed-top navbar-dark bg-dark">
-      <a className="navbar-brand fs-2 library-brand" href="#">Library Ace</a>
-        <menu className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link active" href="index.html">Home</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="myace.html">MyAce</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="rankings.html">Rankings</a>
-          </li>
-        </menu>
-    </nav>
-  </header>
+  return(
+  <BrowserRouter>
+    <div className="body bg-dark text-light">
+    <header className="container-fluid">
+      <nav className="navbar fixed-top navbar-dark bg-dark">
+        <NavLink className="navbar-brand fs-2 library-brand" to="#">Library Ace</NavLink>
+          <menu className="navbar-nav">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="">Login</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="myace">MyAce</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="rankings">Rankings</NavLink>
+            </li>
+          </menu>
+      </nav>
+    </header>
 
-  <main className="container-fluid bg-book-paper text-center">App compnents go here</main>
+    <Routes>
+      <Route path="/" element={<Login />} exact />
+      <Route path="/myace" element={<MyAce />} />
+      <Route path="/rankings" element={<Rankings />} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
 
-  <footer className="bg-dark text-white-50">
-    <div className="container-fluid">
-        <span className="text-reset">Kason Stubbart</span>
-        <a className="text-reset" href="https://github.com/kgstubbart/startup">Library Ace GitHub</a>
-    </div>
-  </footer>
-</div>;
+    <footer className="bg-dark text-white-50">
+      <div className="container-fluid">
+          <span className="text-reset">Kason Stubbart</span>
+          <a className="text-reset" href="https://github.com/kgstubbart/startup">Library Ace GitHub</a>
+      </div>
+    </footer>
+    </div>;
+  </BrowserRouter>
+  );
+}
+
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
