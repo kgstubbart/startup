@@ -27,7 +27,7 @@ export default function App() {
           <a className="text-reset" href="https://github.com/kgstubbart/startup">Library Ace GitHub</a>
       </div>
     </footer>
-    </div>;
+    </div>
   </BrowserRouter>
   );
 }
