@@ -6,27 +6,13 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { MyAce } from './myace/myace';
 import { Rankings } from './rankings/rankings';
+import { Header } from './header';
 
 export default function App() {
   return(
   <BrowserRouter>
     <div className="body bg-dark text-light">
-    <header className="container-fluid">
-      <nav className="navbar fixed-top navbar-dark bg-dark">
-        <NavLink className="navbar-brand fs-2 library-brand" to="#">Library Ace</NavLink>
-          <menu className="navbar-nav">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="">Login</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="myace">MyAce</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="rankings">Rankings</NavLink>
-            </li>
-          </menu>
-      </nav>
-    </header>
+    <Header />
 
     <Routes>
       <Route path="/" element={<Login />} exact />
