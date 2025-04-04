@@ -7,15 +7,28 @@ import { Login } from './login/login';
 import { MyAce } from './myace/myace';
 import { Rankings } from './rankings/rankings';
 import { Header } from './header';
+import { AuthState } from './login/authState';
+
 
 export default function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+  
   return(
   <BrowserRouter>
     <div className="body bg-dark text-light">
     <Header />
 
     <Routes>
-      <Route path="/" element={<Login />} exact />
+      <Route path="/" element={<Login 
+        userName={userName}
+        authState={authState}
+        onAuthChange={(userName, authState) => {
+          setAuthState(authState);
+          setUserName(userName);
+        }}
+      />} exact />
       <Route path="/myace" element={<MyAce />} />
       <Route path="/rankings" element={<Rankings />} />
       <Route path='*' element={<NotFound />} />
