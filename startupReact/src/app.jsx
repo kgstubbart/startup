@@ -18,7 +18,7 @@ export default function App() {
   return(
   <BrowserRouter>
     <div className="body bg-dark text-light">
-    <Header />
+    <Header authState={authState} userName={userName} />
 
     <Routes>
       <Route path="/" element={<Login 
