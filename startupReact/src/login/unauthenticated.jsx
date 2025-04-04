@@ -29,11 +29,11 @@ export function Unauthenticated(props) {
           <span className='input-group-text'>🔒</span>
           <input className='form-control' type='password' onChange={(e) => setPassword(e.target.value)} placeholder='password' />
         </div>
-        <Button variant='primary' onClick={() => loginUser()} disabled={!userName || !password}>
-          Login
-        </Button>
         <Button variant='secondary' onClick={() => createUser()} disabled={!userName || !password}>
-          Create
+          Sign Up
+        </Button>
+        <Button variant='primary' className='ms-2' onClick={() => loginUser()} disabled={!userName || !password}>
+          Login
         </Button>
       </div>
 
