@@ -1,16 +1,28 @@
-export async function searchGoogleBooks(searchTerm) {
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchTerm)}`
-    );
-    const data = await response.json();
+export async function searchGoogleBooks(searchTermOrId, isId = false) {
+    const url = isId
+      ? `https://www.googleapis.com/books/v1/volumes/${searchTermOrId}`
+      : `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchTermOrId)}`;
   
-    if (!data.items) return null;
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Fetch failed with status ${response.status}`);
+      
+      const data = await response.json();
   
-    const book = data.items[0].volumeInfo;
-    return {
-      title: book.title || 'Untitled',
-      author: (book.authors && book.authors[0]) || 'Unknown',
-      description: book.description || 'No description available.',
-      image: book.imageLinks?.thumbnail || '/blankBook.png',
-    };
+      const book = isId ? data.volumeInfo : data.items?.[0]?.volumeInfo;
+      const id = isId ? data.id : data.items?.[0]?.id;
+  
+      if (!book || !id) return null;
+  
+      return {
+        id,
+        title: book.title || 'Untitled',
+        author: (book.authors && book.authors[0]) || 'Unknown',
+        description: book.description || 'No description available.',
+        image: book.imageLinks?.thumbnail || '/blankBook.png',
+      };
+    } catch (err) {
+      console.error("Error fetching book:", err);
+      return null;
+    }
   }
