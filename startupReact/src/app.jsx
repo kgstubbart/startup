@@ -39,7 +39,7 @@ export default function App() {
           setUserName(userName);
         }}
       />} exact />
-      <Route path="/myace" element={<MyAce searchTerm={submittedSearchTerm} />} />
+      <Route path="/myace" element={<MyAce searchTerm={searchTerm} userName={userName} />} />
       <Route path="/rankings" element={<Rankings />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
