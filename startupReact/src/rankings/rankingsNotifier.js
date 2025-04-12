@@ -1,25 +1,24 @@
 const users = [];
 
 export const RankingEvent = {
-  NewAce: 'newAce',
+    NewAce: 'newAce',
 };
 
-function broadcastEvent(username, eventType, book) {
-  for (const callback of users) {
-    callback({ username, eventType, book });
+function broadcastEvent(user, eventType, book) {
+    for (const callback of users) {
+        callback({ user, eventType, book });
   }
 }
 
 export function addRankingUser(callback) {
-  users.push(callback);
+    users.push(callback);
 }
 
 setInterval(() => {
-  const users = ['Kaladin', 'Shallan', 'Elend', 'Vin', 'Sazed'];
-  const books = ['Mistborn', 'Stormlight Archive', 'Elantris', 'Sunlit Man'];
+    const names = ['Kaladin', 'Shallan', 'Elend', 'Vin', 'Sazed', 'Kelsier', 'Dalinar', 'Adolin', 'Navani', 'Eshonai', 'Shalash', 'Lopen'];
+    const books = ['Mistborn', 'Elantris', 'Sunlit Man', 'Warbreaker', 'Secret History', 'Yumi and the Nightmare Painter', 'The Emperor\'s Soul', 'White Sand', 'The Way of Kings', 'Words of Radiance', 'Oathbringer', 'Rhythm of War', 'Wind and Truth'];
+    const user = names[Math.floor(Math.random() * names.length)];
+    const book = books[Math.floor(Math.random() * books.length)];
 
-  const user = users[Math.floor(Math.random() * users.length)];
-  const book = books[Math.floor(Math.random() * books.length)];
-
-  broadcastEvent(user, RankingEvent.NewAce, book);
+    broadcastEvent(user, RankingEvent.NewAce, book);
 }, 5000);
