@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, NavLink, useLocation, Route, Routes } from 'react-router-dom';
 import { AuthState } from './login/authState';
 
-export function Header({ authState, userName }) {
+export function Header({ authState, userName, searchTerm, onSearchChange }) {
   const location = useLocation();
   const isMyAce = location.pathname === '/myace';
   const isRankings = location.pathname === '/rankings';
@@ -41,7 +41,13 @@ export function Header({ authState, userName }) {
           <form className="search-form" method="get" action="/myace">
             <div className="input-group">
               <span className="input-group-text">🔍</span>
-              <input className="form-control" type="text" placeholder="Search library" />
+              <input 
+                className="form-control" 
+                type="text" 
+                placeholder="Search library"
+                value={searchTerm}
+                onChange={(e) => onSearchChange(e.target.value)} 
+              />
               <button className="btn btn-primary" type="submit">Search</button>
             </div>
           </form>
