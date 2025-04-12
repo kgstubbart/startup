@@ -1,12 +1,12 @@
-# CS 260 Notes
-
 [My startup](https://startup.libraryace.click/)
 
 ## Helpful links
 
-- [Course instruction](https://github.com/webprogramming260)
-- [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org)
+
+## React Pt1 Notes
+
+Headers changed for different pages, meaning basic template did not transfer over correctly. I needed to make a seperate header.jsx file, and then import it into app.jsx. The header.jsx checked page location to find if additions to header are necessary. For future cleanup, I may be able to reduce code lines in my locations checks in header.jsx.
 
 ## CSS Notes
 
