@@ -6,7 +6,7 @@ export function MyAce({ searchTerm }) {
     <main className="container-fluid bg-book-paper text-center">
       <h2>{searchTerm}</h2>
       <h5>Author of {searchTerm}</h5>
-      <img src="https://m.media-amazon.com/images/I/91U6rc7u0yL._AC_UF1000,1000_QL80_.jpg" alt="Book Title Cover" width="200" height="300"></img>
+      <img src="/blankBook.png" alt="Logo" width="300" height="300" />
       <div>
           <button className="btn btn-gold">♦ My Ace ♦</button>
       </div>

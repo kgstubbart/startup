@@ -15,15 +15,19 @@ export default function App() {
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [submittedSearchTerm, setSubmittedSearchTerm] = React.useState('');
   
   return(
   <BrowserRouter>
     <div className="body bg-dark text-light">
     <Header 
-      authState={authState} 
-      userName={userName} 
-      searchTerm={searchTerm} 
+      authState={authState}
+      userName={userName}
+      searchTerm={searchTerm}
       onSearchChange={setSearchTerm}
+      onSearchSubmit={() => {
+        setSubmittedSearchTerm(searchTerm);
+      }}
     />
 
     <Routes>
@@ -35,7 +39,7 @@ export default function App() {
           setUserName(userName);
         }}
       />} exact />
-      <Route path="/myace" element={<MyAce searchTerm={searchTerm} />} />
+      <Route path="/myace" element={<MyAce searchTerm={submittedSearchTerm} />} />
       <Route path="/rankings" element={<Rankings />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, NavLink, useLocation, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, useLocation, Route, Routes, useNavigate } from 'react-router-dom';
 import { AuthState } from './login/authState';
 
-export function Header({ authState, userName, searchTerm, onSearchChange }) {
+export function Header({ authState, userName, searchTerm, onSearchChange, onSearchSubmit }) {
   const location = useLocation();
   const isMyAce = location.pathname === '/myace';
   const isRankings = location.pathname === '/rankings';
+  const navigate = useNavigate();
   
   return (
     <header className="container-fluid">
@@ -38,7 +39,16 @@ export function Header({ authState, userName, searchTerm, onSearchChange }) {
           </NavLink>
         )}
         {isMyAce && (
-          <form className="search-form" method="get" action="/myace">
+          <form 
+            className="search-form" 
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (searchTerm.trim()) {
+                onSearchSubmit();
+                navigate('/myace');
+              }
+            }}
+          >
             <div className="input-group">
               <span className="input-group-text">🔍</span>
               <input 
@@ -48,7 +58,9 @@ export function Header({ authState, userName, searchTerm, onSearchChange }) {
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)} 
               />
-              <button className="btn btn-primary" type="submit">Search</button>
+              <button className="btn btn-primary" type="submit">
+                Search
+              </button>
             </div>
           </form>
         )}
