@@ -19,7 +19,7 @@ export function Authenticated(props) {
       <Button variant='primary' onClick={() => navigate('/myace')}>
         MyAce
       </Button>
-      <Button variant='secondary' onClick={() => logout()}>
+      <Button variant='secondary' className='ms-2' onClick={() => logout()}>
         Logout
       </Button>
     </div>
