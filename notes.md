@@ -4,6 +4,10 @@
 
 - [MDN](https://developer.mozilla.org)
 
+## React Pt2 Notes
+
+Keeping things organized was the most difficult part of this phase. Adding mock capabilities will be extremely useful for future phases. Local storage is easy to access but not a long term solution. Passing through variables was also important.
+
 ## React Pt1 Notes
 
 Headers changed for different pages, meaning basic template did not transfer over correctly. I needed to make a seperate header.jsx file, and then import it into app.jsx. The header.jsx checked page location to find if additions to header are necessary. For future cleanup, I may be able to reduce code lines in my locations checks in header.jsx.
