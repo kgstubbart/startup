@@ -1,39 +1,54 @@
 import React from 'react';
 import './myace.css';
 
-export function BookView({ bookTitle, userAceBook, setUserAceBook, aceTally, setAceTally }) {
-  const isThisBookAced = bookTitle === userAceBook;
+export function BookView({ bookTitle, userAceBook, setUserAceBook }) {
+    const [aceTally, setAceTally] = React.useState(() => {
+        const tallies = JSON.parse(localStorage.getItem('bookTallies') || '{}');
+        return tallies[bookTitle] || 0;
+    });
 
-  const handleAceClick = () => {
+    const isThisBookAced = bookTitle === userAceBook;
+
+    const handleAceClick = () => {
     if (!bookTitle || isThisBookAced) return;
 
-    if (userAceBook && userAceBook !== bookTitle) {
-      console.log(`Removed ace from: ${userAceBook}`);
+    const tallies = JSON.parse(localStorage.getItem('bookTallies') || '{}');
+
+    if (userAceBook && tallies[userAceBook]) {
+        tallies[userAceBook] -= 1;
     }
 
-    setUserAceBook(bookTitle);
+    if (!tallies[bookTitle]) {
+        tallies[bookTitle] = 1;
+    } else {
+        tallies[bookTitle] += 1;
+    }
+
+    localStorage.setItem('bookTallies', JSON.stringify(tallies));
     localStorage.setItem('userAceBook', bookTitle);
-    setAceTally(prev => prev + 1);
-  };
 
-  return (
+    setUserAceBook(bookTitle);
+    setAceTally(tallies[bookTitle]);
+    };
+
+    return (
     <main className="container-fluid bg-book-paper text-center">
-      <h2>{bookTitle}</h2>
-      <h5>Author of {bookTitle}</h5>
-      <img src="/blankBook.png" alt="BlnBook Cover" width="200" height="200" />
+        <h2>{bookTitle}</h2>
+        <h5>Author of {bookTitle}</h5>
+        <img src="/blankBook.png" alt="Book Cover" width="200" height="200" />
 
-      <div className="mt-3">
+        <div className="mt-3">
         <button 
-          className="btn btn-gold" 
-          onClick={handleAceClick}
-          disabled={isThisBookAced}
+            className="btn btn-gold" 
+            onClick={handleAceClick}
+            disabled={isThisBookAced}
         >
-          ♦ My Ace ♦
+            ♦ My Ace ♦
         </button>
-      </div>
+        </div>
 
-      <p><b>Ace Tally: </b>{aceTally}</p>
-      <p className="text-start px-3">Summary of {bookTitle}</p>
+        <p><b>Ace Tally: </b>{aceTally}</p>
+        <p className="text-start px-3">Summary of {bookTitle}</p>
     </main>
-  );
+    );
 }

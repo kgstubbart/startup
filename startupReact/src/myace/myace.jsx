@@ -17,8 +17,6 @@ export function MyAce({ searchTerm }) {
       bookTitle={activeBook}
       userAceBook={userAceBook}
       setUserAceBook={setUserAceBook}
-      aceTally={aceTally}
-      setAceTally={setAceTally}
     />
   );
 }
