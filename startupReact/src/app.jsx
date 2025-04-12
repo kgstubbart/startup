@@ -14,11 +14,17 @@ export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
+  const [searchTerm, setSearchTerm] = React.useState('');
   
   return(
   <BrowserRouter>
     <div className="body bg-dark text-light">
-    <Header authState={authState} userName={userName} />
+    <Header 
+      authState={authState} 
+      userName={userName} 
+      searchTerm={searchTerm} 
+      onSearchChange={setSearchTerm}
+    />
 
     <Routes>
       <Route path="/" element={<Login 
@@ -29,7 +35,7 @@ export default function App() {
           setUserName(userName);
         }}
       />} exact />
-      <Route path="/myace" element={<MyAce />} />
+      <Route path="/myace" element={<MyAce searchTerm={searchTerm} />} />
       <Route path="/rankings" element={<Rankings />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
