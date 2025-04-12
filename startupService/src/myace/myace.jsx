@@ -5,7 +5,7 @@ import { searchGoogleBooks } from './googleBooks';
 
 export function MyAce({ searchTerm, userName }) {
   const [userAceBook, setUserAceBook] = React.useState(() => localStorage.getItem('userAceBook') || '');
-  const activeBook = searchTerm || userAceBook;
+  const activeSearch  = searchTerm || userAceBook;
   const [bookData, setBookData] = React.useState(null);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ export function MyAce({ searchTerm, userName }) {
 
   return (
     <BookView
-      bookTitle={activeBook}
+      bookTitle={bookData.title}
       author={bookData.author}
       image={bookData.image}
       summary={bookData.description}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './myace.css';
 
-export function BookView({ bookTitle, userName }) {
+export function BookView({ bookTitle, author, image, summary, userName }) {
   const [aceTally, setAceTally] = React.useState(() => {
     const tallies = JSON.parse(localStorage.getItem('bookTallies') || '{}');
     return tallies[bookTitle] || 0;
@@ -44,8 +44,14 @@ export function BookView({ bookTitle, userName }) {
   return (
     <main className="container-fluid bg-book-paper text-center">
       <h2>{bookTitle}</h2>
-      <h5>Author of {bookTitle}</h5>
-      <img src="/blankBook.png" alt="Book Cover" width="200" height="200" />
+      <h5>{author}</h5>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img
+          src={image}
+          alt={bookTitle}
+          style={{ transform: 'scale(1.5)', transformOrigin: 'top center' }}
+        />
+      </div>
 
       <div className="mt-3">
         <button 
@@ -58,7 +64,7 @@ export function BookView({ bookTitle, userName }) {
       </div>
 
       <p><b>Ace Tally: </b>{aceTally}</p>
-      <p className="text-start px-3">Summary of {bookTitle}</p>
+      <p className="text-start px-3">{summary}</p>
     </main>
   );
 }
