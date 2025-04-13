@@ -92,17 +92,34 @@ apiRouter.post('/ace', verifyAuth, (req, res) => {
 });
 
 // Get aces
+apiRouter.get('/aces', verifyAuth, (_req, res) => {
+    try {
+      const ranked = Object.entries(aces)
+        .map(([id, data]) => ({
+          id,
+          ...data,
+        }))
+        .sort((a, b) => b.count - a.count);
+  
+      res.send(ranked.slice(0, 10));
+    } catch (err) {
+      console.error('Error in /api/aces:', err);
+      res.status(500).send({ msg: 'Internal Server Error in /api/aces' });
+    }
+  });
+
+// Get recent aces
 apiRouter.get('/recent', verifyAuth, (_req, res) => {
     res.send(recentAces);
 });
 
 // === Helpers ===
 
-async function createUser(email, password) {
+async function createUser(username, password) {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const user = {
-        email: email,
+        username,
         password: passwordHash,
         token: uuid.v4(),
     };
