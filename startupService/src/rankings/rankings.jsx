@@ -8,16 +8,21 @@ export function Rankings() {
 
 	React.useEffect(() => {
 	const tallies = JSON.parse(localStorage.getItem('bookTallies') || '{}');
+	const bookMeta = JSON.parse(localStorage.getItem('bookMeta') || '{}');
 	
 	const sorted = Object.entries(tallies)
-		.map(([title, count]) => ({
-		title,
-		count,
-		author: title + ' Author',
-		}))
-		.sort((a, b) => b.count - a.count);
+      .map(([id, count]) => {
+        const meta = bookMeta[id] || {};
+        return {
+          id,
+          count,
+          title: meta.title || id,
+          author: meta.author || `${id} Author`,
+        };
+      })
+      .sort((a, b) => b.count - a.count);
 	
-	setTopAces(sorted);
+	  setTopAces(sorted.slice(0, 3));
 	}, []);
 
 	React.useEffect(() => {
@@ -33,6 +38,8 @@ export function Rankings() {
 		addRankingUser(handler);
 	}, []);
 
+	const bookMeta = JSON.parse(localStorage.getItem('bookMeta') || '{}');
+
 	return (
 		<main className="container-fluid bg-book-paper text-center">
 		<table className="table table-warning table-striped top-aces-table">
@@ -47,7 +54,7 @@ export function Rankings() {
 			</thead>
 			<tbody>
 			{topAces.map((book, index) => (
-				<tr key={book.title}>
+				<tr key={book.id}>
 				<td>#{index + 1}</td>
 				<td>{book.count}</td>
 				<td>{book.title}</td>
@@ -69,7 +76,7 @@ export function Rankings() {
 			{recentAces.map((entry, idx) => (
 				<tr key={idx}>
 				<td>{entry.user}</td>
-				<td>{entry.title}</td>
+				<td>{bookMeta[entry.title]?.title || entry.title}</td>
 				</tr>
 			))}
 			</tbody>
