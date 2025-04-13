@@ -115,3 +115,8 @@ async function createUser(email, password) {
 async function findUser(field, value) {
     return users.find((user) => user[field] === value);
 }
+
+function getUsernameFromToken(token) {
+    const user = users.find((u) => u.token === token);
+    return user ? user.username : null;
+}
