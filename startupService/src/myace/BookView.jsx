@@ -14,32 +14,49 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
 
   const isThisBookAced = bookId === userAceBookId;
 
-  const handleAceClick = () => {
+  const handleAceClick = async () => {
     if (!bookId || isThisBookAced) return;
-
+  
     const tallies = JSON.parse(localStorage.getItem('bookTallies') || '{}');
     const userAces = JSON.parse(localStorage.getItem('userAces') || '{}');
     const bookMeta = JSON.parse(localStorage.getItem('bookMeta') || '{}');
-
+  
     const prevBookId = userAces[userName];
     if (prevBookId && tallies[prevBookId]) {
       tallies[prevBookId] = Math.max(tallies[prevBookId] - 1, 0);
     }
-
+  
     tallies[bookId] = (tallies[bookId] || 0) + 1;
     userAces[userName] = bookId;
-
-    bookMeta[bookId] = {
-      title: bookTitle,
-      author,
-    };
-
+    bookMeta[bookId] = { title: bookTitle, author };
+  
     localStorage.setItem('bookTallies', JSON.stringify(tallies));
     localStorage.setItem('userAces', JSON.stringify(userAces));
     localStorage.setItem('bookMeta', JSON.stringify(bookMeta));
-
+  
     setAceTally(tallies[bookId]);
     setUserAceBookId(bookId);
+  
+    try {
+      const res = await fetch('/api/ace', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          bookId,
+          title: bookTitle,
+          author,
+        }),
+      });
+  
+      if (!res.ok) {
+        console.error('Backend ace submission failed');
+      }
+    } catch (err) {
+      console.error('Error calling /api/ace:', err);
+    }
   };
 
   React.useEffect(() => {
