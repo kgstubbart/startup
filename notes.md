@@ -7,6 +7,7 @@
 ## Service Notes
 
 Should have started with service endpoints since I ended up adding functionality without and needed to chnage it. Making sure to connect all endpoints is important. I forgot to fetch the login/createUser/logout endpoints and that made me think something else was wrong when testing when, in reality, it was that no authentication was actually being passed through.
+
 ## React Pt2 Notes
 
 Keeping things organized was the most difficult part of this phase. Adding mock capabilities will be extremely useful for future phases. Local storage is easy to access but not a long term solution. Passing through variables was also important.
