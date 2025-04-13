@@ -87,8 +87,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Book aces are tallied for each book, repeteatable for uders. Login is functional. Websocet capabilities are mocked.
+- [x] **Hooks** - UseState manages component-level state and useEffect runs when things change.
 
 ## 🚀 Service deliverable
 
