@@ -67,3 +67,27 @@ const verifyAuth = async (req, res, next) => {
         res.status(401).send({ msg: 'Unauthorized' });
     }
 };
+
+// Submit an ace
+apiRouter.post('/ace', verifyAuth, (req, res) => {
+    const username = getUsernameFromToken(req.cookies[authCookieName]);
+    const { bookId, title, author } = req.body;
+    if (!bookId || !title || !author) {
+        return res.status(400).send({ msg: 'Missing required fields' });
+    }
+    const previous = userAces[username];
+    if (previous && aces[previous]) {
+        aces[previous] = Math.max(aces[previous] - 1, 0);
+    }
+    if (!aces[bookId]) {
+        aces[bookId] = { title, author, count: 1 };
+    } else {
+        aces[bookId].count += 1;
+    }
+
+    userAces[username] = bookId;
+    recentAces.unshift({ user: username, title });
+    recentAces = recentAces.slice(0, 3);
+
+    res.send({ success: true });
+});
