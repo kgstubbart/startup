@@ -19,3 +19,16 @@ app.use(express.static('public'));
 
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
+
+// === Auth Endpoints ===
+
+apiRouter.post('/auth/create', async (req, res) => {
+    if (await findUser('username', req.body.username)) {
+      res.status(409).send({ msg: 'Existing user' });
+    } else {
+      const user = await createUser(req.body.username, req.body.password);
+  
+      setAuthCookie(res, user.token);
+      res.send({ username: user.username });
+    }
+  });
