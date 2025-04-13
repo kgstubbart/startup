@@ -111,3 +111,7 @@ async function createUser(email, password) {
 
     return user;
 }
+
+async function findUser(field, value) {
+    return users.find((user) => user[field] === value);
+}
