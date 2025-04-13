@@ -19,6 +19,7 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
 
     const tallies = JSON.parse(localStorage.getItem('bookTallies') || '{}');
     const userAces = JSON.parse(localStorage.getItem('userAces') || '{}');
+    const bookMeta = JSON.parse(localStorage.getItem('bookMeta') || '{}');
 
     const prevBookId = userAces[userName];
     if (prevBookId && tallies[prevBookId]) {
@@ -28,8 +29,14 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
     tallies[bookId] = (tallies[bookId] || 0) + 1;
     userAces[userName] = bookId;
 
+    bookMeta[bookId] = {
+      title: bookTitle,
+      author,
+    };
+
     localStorage.setItem('bookTallies', JSON.stringify(tallies));
     localStorage.setItem('userAces', JSON.stringify(userAces));
+    localStorage.setItem('bookMeta', JSON.stringify(bookMeta));
 
     setAceTally(tallies[bookId]);
     setUserAceBookId(bookId);
@@ -41,17 +48,21 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
   }, [bookId]);
 
   return (
-    <main className="container-fluid bg-book-paper text-center">
-      <h2>{bookTitle}</h2>
-      <h5>{author}</h5>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <main className="container-fluid bg-book-paper text-center py-4">
+      <div>
+      <div>
+        <h1>{bookTitle}</h1>
+        <h4>{author}</h4>
+      </div>
+
+      <div className="book-image-wrapper mb-4">
         <img
           src={image}
           alt={bookTitle}
         />
       </div>
 
-      <div className="mt-3 mb-2">
+      <div className="mb-3">
         <button 
           className="btn btn-gold" 
           onClick={handleAceClick}
@@ -59,13 +70,13 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
         >
           ♦ My Ace ♦
         </button>
+        <p className="mt-2"><b>Ace Tally: </b>{aceTally}</p>
       </div>
 
-      <p><b>Ace Tally: </b>{aceTally}</p>
-      
-      <p className="text-start px-3">
-        {stripHTML(summary)}
-      </p>
+      <div className="summary-text px-3">
+        <p>{stripHTML(summary)}</p>
+      </div>
+      </div>
     </main>
   );
 }
