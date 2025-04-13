@@ -91,3 +91,8 @@ apiRouter.post('/ace', verifyAuth, (req, res) => {
 
     res.send({ success: true });
 });
+
+// Get aces
+apiRouter.get('/recent', verifyAuth, (_req, res) => {
+    res.send(recentAces);
+});
