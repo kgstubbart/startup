@@ -76,7 +76,11 @@ apiRouter.post('/ace', verifyAuth, (req, res) => {
     }
     const previous = userAces[username];
     if (previous && aces[previous]) {
-        aces[previous] = Math.max(aces[previous] - 1, 0);
+        aces[previous].count = Math.max(aces[previous].count - 1, 0);
+
+        if (aces[previous].count === 0) {
+            delete aces[previous];
+        }
     }
     if (!aces[bookId]) {
         aces[bookId] = { title, author, count: 1 };
