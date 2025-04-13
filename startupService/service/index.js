@@ -128,3 +128,18 @@ function setAuthCookie(res, authToken) {
         sameSite: 'strict',
     });
 }
+
+// === Error Handling ===
+
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
+  
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send({ type: err.name, message: err.message });
+});
+  
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
