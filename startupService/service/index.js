@@ -96,3 +96,18 @@ apiRouter.post('/ace', verifyAuth, (req, res) => {
 apiRouter.get('/recent', verifyAuth, (_req, res) => {
     res.send(recentAces);
 });
+
+// === Helpers ===
+
+async function createUser(email, password) {
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = {
+        email: email,
+        password: passwordHash,
+        token: uuid.v4(),
+    };
+    users.push(user);
+
+    return user;
+}
