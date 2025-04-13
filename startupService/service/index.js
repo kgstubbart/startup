@@ -120,3 +120,11 @@ function getUsernameFromToken(token) {
     const user = users.find((u) => u.token === token);
     return user ? user.username : null;
 }
+
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
+}
