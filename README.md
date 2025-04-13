@@ -40,7 +40,7 @@ I am going to use the required technologies in the following ways.
     - login
     - submitting favorite
     - retrieving favorites status
-- **API** - Going to use Goodreads API to get book information, such as titles, author, and summary.
+- **API** - Going to use Google Books API to get book information such as title, author, cover, and summary.
 - **DB/Login** - Store users and favorites in database. Register and login users. Credentials securely stored in database. Can't vote unless authenticated.
 - **WebSocket** - When a new book becomes the number one favorited, that book is broadcast to all users.
 
@@ -94,11 +94,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Node.js and Express HTTP implemented.
+- [x] **Static middleware for frontend** - Middleware in auth and use was correctly completed.
+- [x] **Calls to third party endpoints** - Sent calls to Google Books API for book information.
+- [x] **Backend service endpoints** - Endpoints for all actions such as login/create/logout, aces, and more.
+- [x] **Frontend calls service endpoints** - Frontend calls for login page and ace information.
 
 ## 🚀 DB/Login deliverable
 
