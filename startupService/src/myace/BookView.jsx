@@ -48,11 +48,10 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
         <img
           src={image}
           alt={bookTitle}
-          style={{ transform: 'scale(1.5)', transformOrigin: 'top center' }}
         />
       </div>
 
-      <div className="mt-3">
+      <div className="mt-3 mb-2">
         <button 
           className="btn btn-gold" 
           onClick={handleAceClick}
@@ -63,6 +62,7 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
       </div>
 
       <p><b>Ace Tally: </b>{aceTally}</p>
+      
       <p className="text-start px-3">
         {stripHTML(summary)}
       </p>
