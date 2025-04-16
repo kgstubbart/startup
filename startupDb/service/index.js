@@ -61,14 +61,15 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 });
 
 // Middleware to verify that the user is authorized to call an endpoint
-const verifyAuth = async (req, res, next) => {
+async function verifyAuth(req, res, next) {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
+        req.username = user.username;
         next();
     } else {
         res.status(401).send({ msg: 'Unauthorized' });
     }
-};
+}
 
 // Submit an ace
 apiRouter.post('/ace', verifyAuth, async (req, res) => {
@@ -104,18 +105,14 @@ async function createUser(username, password) {
         password: passwordHash,
         token: uuid.v4(),
     };
-    users.push(user);
+    await DB.addUser(user);
 
     return user;
 }
 
 async function findUser(field, value) {
-    return users.find((user) => user[field] === value);
-}
-
-function getUsernameFromToken(token) {
-    const user = users.find((u) => u.token === token);
-    return user ? user.username : null;
+    if (!value) return null;
+    return field === 'token' ? DB.getUserByToken(value) : DB.getUser(value);
 }
 
 function setAuthCookie(res, authToken) {
