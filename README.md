@@ -104,11 +104,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [x] **User registration** - User is saved in MongoDB when creating an account.
+- [x] **User login and logout** - User login information is pulled from MongoDB with a hashed password. When logged out, user must log back in to continue session.
+- [x] **Stores data in MongoDB** - User ace information is stored alongside their credentials. When a book is aced, the book is added to MongoDB with it's own information.
+- [x] **Stores credentials in MongoDB** - User username, password, and token are stored in MongoDB.
+- [x] **Restricts functionality based on authentication** - Login page is only page available when unauthenticated. When authenticated, user is able to access all pages.
 
 ## 🚀 WebSocket deliverable
 
