@@ -32,8 +32,8 @@ class RankingEventNotifier {
         };
     }
 
-    broadcastEvent(from, type, value) {
-        const event = new EventMessage(from, type, value);
+    broadcastEvent(user, title) {
+        const event = new EventMessage(user, RankingEvent.NewAce, title);
         this.socket.send(JSON.stringify(event));
     }
 
