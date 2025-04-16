@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -39,6 +40,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUser(user);
             setAuthCookie(res, user.token);
             res.send({ username: user.username });
             return;
@@ -52,6 +54,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
       delete user.token;
+      DB.updateUser(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -68,30 +71,14 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // Submit an ace
-apiRouter.post('/ace', verifyAuth, (req, res) => {
-    const username = getUsernameFromToken(req.cookies[authCookieName]);
+apiRouter.post('/ace', verifyAuth, async (req, res) => {
     const { bookId, title, author } = req.body;
     if (!bookId || !title || !author) {
-        return res.status(400).send({ msg: 'Missing required fields' });
+      res.status(400).send({ msg: 'Missing fields' });
+      return;
     }
-    const previous = userAces[username];
-    if (previous && aces[previous]) {
-        aces[previous].count = Math.max(aces[previous].count - 1, 0);
-
-        if (aces[previous].count === 0) {
-            delete aces[previous];
-        }
-    }
-    if (!aces[bookId]) {
-        aces[bookId] = { title, author, count: 1 };
-    } else {
-        aces[bookId].count += 1;
-    }
-
-    userAces[username] = bookId;
-    recentAces.unshift({ user: username, title });
-    recentAces = recentAces.slice(0, 3);
-
+  
+    await DB.submitAce(req.username, bookId, title, author);
     res.send({ success: true });
 });
 
@@ -110,7 +97,7 @@ apiRouter.get('/aces', verifyAuth, (_req, res) => {
       console.error('Error in /api/aces:', err);
       res.status(500).send({ msg: 'Internal Server Error in /api/aces' });
     }
-  });
+});
 
 // Get recent aces
 apiRouter.get('/recent', verifyAuth, (_req, res) => {
