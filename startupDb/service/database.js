@@ -19,12 +19,12 @@ const scoreCollection = db.collection('aces');
 })();
 
 function getUser(username) {
-  return userCollection.findOne({ username });
+  return userCollection.findOne({ username: username });
 }
 
-// function getUser(email) {
-//   return userCollection.findOne({ email: email });
-// }
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
 
 // function getUserByToken(token) {
 //   return userCollection.findOne({ token: token });
