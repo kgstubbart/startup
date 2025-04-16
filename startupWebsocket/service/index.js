@@ -7,7 +7,7 @@ const DB = require('./database.js');
 const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -130,6 +130,8 @@ app.use((err, req, res, next) => {
     res.status(500).send({ type: err.name, message: err.message });
 });
   
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+peerProxy(httpService);
