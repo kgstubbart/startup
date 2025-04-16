@@ -114,8 +114,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Backend listens for a recent ace.
+- [x] **Frontend makes WebSocket connection** - Frontend makes a WebSocket connection to the backend to grab data.
+- [x] **Data sent over WebSocket connection** - Username and book ace title are sent over WebSocket.
+- [x] **WebSocket data displayed** - UI displays the username and their book ace in a table. It automatically only shows five at a time, updating as they come through.
+- [x] **Application is fully functional** - Library Ace is fully functional! Secure authentication is implemented. Users are able to search and select one book ace. Users can see the most highly and more recent aces.
