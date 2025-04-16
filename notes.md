@@ -4,6 +4,10 @@
 
 - [MDN](https://developer.mozilla.org)
 
+## WebSocket Notes
+
+WebSocket for Library Ace was significantly easier than past projects, especially the WebSockets implemented in Chess. I believe a large reason for this is I have spent more time in other phases of deployment getting a framework for these WebSockets in. My WebSocket implementation is very similar to Simon which was a very helpful guide on my own functions. Testing on my machine took time because I had to figure out how to tell if the recent aces were going through WebSocket or still through the database, which I learned to tell by not seeing a fetch command from another users prospective.
+
 ## DB Notes
 
 After using MySQL in my chess application and using MongoDB here, I believe I enjoy SQL more. This was a bit more streamlined but I felt as though I had more access with SQL and it was a bit more clear. Adding the database after doing the service was quite simple though, essentially just adding a line to most functions in my service/index.js and redoing some logic in the database.js.
