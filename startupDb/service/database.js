@@ -38,14 +38,16 @@ async function updateUser(user) {
 // === ACE LOGIC ===
 
 async function submitAce(username, bookId, title, author) {
-  const user = await getUser(username);
-
-  // Decrement old ace if needed
-  if (user?.ace) {
-    await aceCollection.updateOne(
+  if (user?.ace && user.ace !== bookId) {
+    const result = await aceCollection.findOneAndUpdate(
       { bookId: user.ace },
-      { $inc: { count: -1 } }
+      { $inc: { count: -1 } },
+      { returnDocument: 'after' }
     );
+  
+    if (result.value && result.value.count <= 0) {
+      await aceCollection.deleteOne({ bookId: user.ace });
+    }
   }
 
   // Upsert new ace

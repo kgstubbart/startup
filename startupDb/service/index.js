@@ -8,11 +8,6 @@ const DB = require('./database.js');
 const authCookieName = 'token';
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-let users = [];
-let aces = {};
-let userAces = {};
-let recentAces = [];
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
