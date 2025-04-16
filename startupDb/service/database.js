@@ -71,13 +71,22 @@ async function getTopAces() {
   return aceCollection.find({ count: { $gt: 0 } }).sort({ count: -1 }).limit(10).toArray();
 }
 
+async function getRecentAces() {
+  return userCollection
+    .find({ ace: { $exists: true } })
+    .sort({ updatedAt: -1 })
+    .limit(3)
+    .project({ username: 1, ace: 1 })
+    .toArray();
+}
 
-
-// module.exports = {
-//   getUser,
-//   getUserByToken,
-//   addUser,
-//   updateUser,
-//   addScore,
-//   getHighScores,
-// };
+module.exports = {
+  getUser,
+  getUserByToken,
+  addUser,
+  updateToken,
+  logoutUser,
+  submitAce,
+  getTopAces,
+  getRecentAces,
+};
