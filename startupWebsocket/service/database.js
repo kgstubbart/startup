@@ -72,7 +72,7 @@ async function getRecentAces() {
   const users = await userCollection
     .find({ ace: { $exists: true } })
     .sort({ updatedAt: -1 })
-    .limit(3)
+    .limit(5)
     .project({ username: 1, ace: 1 })
     .toArray();
 
