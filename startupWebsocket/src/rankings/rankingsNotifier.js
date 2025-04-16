@@ -23,7 +23,11 @@ class RankingEventNotifier {
         this.socket.onmessage = async (msg) => {
             try {
                 const event = JSON.parse(await msg.data.text());
-                this.receiveEvent(event);
+                if (event.type === RankingEvent.NewAce) {
+                    this.handlers.forEach((handler) => {
+                        handler({user: event.from, eventType: event.type, book: event.value.title});
+                    });
+                }
             } catch {}
         };
     }
