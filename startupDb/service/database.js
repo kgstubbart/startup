@@ -68,13 +68,24 @@ function getTopAces() {
   return aceCollection.find({ count: { $gt: 0 } }).sort({ count: -1 }).limit(10).toArray();
 }
 
-function getRecentAces() {
-  return userCollection
+async function getRecentAces() {
+  const users = await userCollection
     .find({ ace: { $exists: true } })
     .sort({ updatedAt: -1 })
     .limit(3)
     .project({ username: 1, ace: 1 })
     .toArray();
+
+  const recent = [];
+
+  for (const u of users) {
+    const book = await aceCollection.findOne({ bookId: u.ace });
+    if (book) {
+      recent.push({ user: u.username, title: book.title });
+    }
+  }
+
+  return recent;
 }
 
 module.exports = {
