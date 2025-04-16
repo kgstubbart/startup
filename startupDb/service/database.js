@@ -67,19 +67,11 @@ async function submitAce(username, bookId, title, author) {
   );
 }
 
-// async function addScore(score) {
-//   return scoreCollection.insertOne(score);
-// }
+async function getTopAces() {
+  return aceCollection.find({ count: { $gt: 0 } }).sort({ count: -1 }).limit(10).toArray();
+}
 
-// function getHighScores() {
-//   const query = { score: { $gt: 0, $lt: 900 } };
-//   const options = {
-//     sort: { score: -1 },
-//     limit: 10,
-//   };
-//   const cursor = scoreCollection.find(query, options);
-//   return cursor.toArray();
-// }
+
 
 // module.exports = {
 //   getUser,
