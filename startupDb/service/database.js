@@ -38,6 +38,8 @@ async function updateUser(user) {
 // === ACE LOGIC ===
 
 async function submitAce(username, bookId, title, author) {
+  const user = await getUser(username);
+
   if (user?.ace && user.ace !== bookId) {
     const result = await aceCollection.findOneAndUpdate(
       { bookId: user.ace },
@@ -50,14 +52,12 @@ async function submitAce(username, bookId, title, author) {
     }
   }
 
-  // Upsert new ace
   await aceCollection.updateOne(
     { bookId },
     { $set: { title, author }, $inc: { count: 1 } },
     { upsert: true }
   );
 
-  // Update user's ace
   await userCollection.updateOne(
     { username },
     { $set: { ace: bookId, updatedAt: new Date() } }
