@@ -83,24 +83,14 @@ apiRouter.post('/ace', verifyAuth, async (req, res) => {
 });
 
 // Get aces
-apiRouter.get('/aces', verifyAuth, (_req, res) => {
-    try {
-      const ranked = Object.entries(aces)
-        .map(([id, data]) => ({
-          id,
-          ...data,
-        }))
-        .sort((a, b) => b.count - a.count);
-  
-      res.send(ranked.slice(0, 10));
-    } catch (err) {
-      console.error('Error in /api/aces:', err);
-      res.status(500).send({ msg: 'Internal Server Error in /api/aces' });
-    }
+apiRouter.get('/aces', verifyAuth, async (_req, res) => {
+    const bookaces = await DB.getTopAces();
+    res.send(bookaces);
 });
 
 // Get recent aces
-apiRouter.get('/recent', verifyAuth, (_req, res) => {
+apiRouter.get('/recent', verifyAuth, async (_req, res) => {
+    const recentAces = await DB.getRecentAces();
     res.send(recentAces);
 });
 
