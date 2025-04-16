@@ -64,8 +64,19 @@ async function submitAce(username, bookId, title, author) {
   );
 }
 
-function getTopAces() {
-  return aceCollection.find({ count: { $gt: 0 } }).sort({ count: -1 }).limit(10).toArray();
+async function getTopAces() {
+  const results = await aceCollection
+    .find({ count: { $gt: 0 } })
+    .sort({ count: -1 })
+    .limit(10)
+    .toArray();
+
+  return results.map((doc) => ({
+    id: doc.bookId,
+    title: doc.title,
+    author: doc.author,
+    count: doc.count,
+  }));
 }
 
 async function getRecentAces() {
