@@ -38,6 +38,17 @@ export function Rankings() {
       });
   }, []);
 
+  React.useEffect(() => {
+    RankingsNotifier.addHandler(({ user, eventType, book }) => {
+      if (eventType === RankingEvent.NewAce) {
+        setRecentAces((prev) => {
+          const updated = [{ user, title: book }, ...prev];
+          return updated.slice(0, 5);
+        });
+      }
+    });
+  }, []);
+
   return (
     <main className="container-fluid bg-book-paper text-center py-4">
       {/* Top Aces Table */}
