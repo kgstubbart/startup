@@ -22,11 +22,11 @@ const uuid = require('uuid');
 })();
 
 function getUser(username) {
-  return userCollection.findOne({ username: username });
+  return userCollection.findOne({ username });
 }
 
 function getUserByToken(token) {
-  return userCollection.findOne({ token: token });
+  return userCollection.findOne({ token });
 }
 
 async function addUser(username, password) {
@@ -39,9 +39,9 @@ async function addUser(username, password) {
   return user;
 }
 
-// async function updateUser(user) {
-//   await userCollection.updateOne({ email: user.email }, { $set: user });
-// }
+async function updateToken(username, newToken) {
+  await userCollection.updateOne({ username }, { $set: { token: newToken } });
+}
 
 // async function addScore(score) {
 //   return scoreCollection.insertOne(score);
