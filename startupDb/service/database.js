@@ -7,6 +7,9 @@ const db = client.db('startup');
 const userCollection = db.collection('users');
 const scoreCollection = db.collection('aces');
 
+const bcrypt = require('bcryptjs');
+const uuid = require('uuid');
+
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
   try {
@@ -26,13 +29,15 @@ function getUserByToken(token) {
   return userCollection.findOne({ token: token });
 }
 
-// function getUserByToken(token) {
-//   return userCollection.findOne({ token: token });
-// }
-
-// async function addUser(user) {
-//   await userCollection.insertOne(user);
-// }
+async function addUser(username, password) {
+  const user = {
+    username,
+    password: await bcrypt.hash(password, 10),
+    token: uuid.v4(),
+  };
+  await userCollection.insertOne(user);
+  return user;
+}
 
 // async function updateUser(user) {
 //   await userCollection.updateOne({ email: user.email }, { $set: user });
