@@ -131,7 +131,7 @@ app.use((err, req, res, next) => {
 });
   
 const httpService = app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Listening on port ${port}`);
 });
 
 peerProxy(httpService);
