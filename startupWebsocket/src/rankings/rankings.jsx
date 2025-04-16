@@ -1,5 +1,6 @@
 import React from 'react';
 import './rankings.css';
+import { RankingsNotifier, RankingEvent } from './rankingsNotifier';
 
 export function Rankings() {
   const [topAces, setTopAces] = React.useState([]);
