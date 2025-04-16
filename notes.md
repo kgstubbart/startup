@@ -4,6 +4,10 @@
 
 - [MDN](https://developer.mozilla.org)
 
+## DB Notes
+
+After using MySQL in my chess application and using MongoDB here, I believe I enjoy SQL more. This was a bit more streamlined but I felt as though I had more access with SQL and it was a bit more clear. Adding the database after doing the service was quite simple though, essentially just adding a line to most functions in my service/index.js and redoing some logic in the database.js.
+
 ## Service Notes
 
 Should have started with service endpoints since I ended up adding functionality without and needed to chnage it. Making sure to connect all endpoints is important. I forgot to fetch the login/createUser/logout endpoints and that made me think something else was wrong when testing when, in reality, it was that no authentication was actually being passed through.
