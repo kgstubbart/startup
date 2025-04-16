@@ -1,8 +1,16 @@
 const users = [];
 
-export const RankingEvent = {
+const RankingEvent = {
     NewAce: 'newAce',
 };
+
+class EventMessage {
+    constructor(user, type, book) {
+      this.from = user;
+      this.type = type;
+      this.value = { title: book };
+    }
+  }
 
 function broadcastEvent(user, eventType, book) {
     for (const callback of users) {
