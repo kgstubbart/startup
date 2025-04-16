@@ -52,7 +52,7 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
         }),
       });
   
-      if (!res.ok) {
+      if (res.ok) {
         RankingsNotifier.broadcastEvent(userName, bookTitle);
       } else {
         console.error('Backend ace submission failed');
