@@ -1,5 +1,6 @@
 import React from 'react';
 import './myace.css';
+import { RankingsNotifier } from './rankingsNotifier';
 
 export function BookView({ bookId, bookTitle, author, image, summary, userName }) {
   const [aceTally, setAceTally] = React.useState(() => {
@@ -52,6 +53,8 @@ export function BookView({ bookId, bookTitle, author, image, summary, userName }
       });
   
       if (!res.ok) {
+        RankingsNotifier.broadcastEvent(userName, bookTitle);
+      } else {
         console.error('Backend ace submission failed');
       }
     } catch (err) {
