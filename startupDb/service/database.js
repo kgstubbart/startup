@@ -5,7 +5,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('users');
-const scoreCollection = db.collection('aces');
+const aceCollection = db.collection('aces');
 
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
@@ -41,6 +41,30 @@ async function addUser(username, password) {
 
 async function updateToken(username, newToken) {
   await userCollection.updateOne({ username }, { $set: { token: newToken } });
+}
+
+async function submitAce(username, bookId, title, author) {
+  const user = await getUser(username);
+  if (user?.ace) {
+    await aceCollection.updateOne(
+      { bookId: user.ace },
+      { $inc: { count: -1 } }
+    );
+  }
+
+  await aceCollection.updateOne(
+    { bookId },
+    {
+      $set: { title, author },
+      $inc: { count: 1 },
+    },
+    { upsert: true }
+  );
+
+  await userCollection.updateOne(
+    { username },
+    { $set: { ace: bookId, updatedAt: new Date() } }
+  );
 }
 
 // async function addScore(score) {
